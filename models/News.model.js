@@ -4,6 +4,7 @@ const NewsSchema = mongoose.Schema({
   img: String,
   name: String,
   desciption: String,
+  category: String,
   comments: [
     {
       user: {

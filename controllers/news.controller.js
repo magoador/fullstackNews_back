@@ -7,6 +7,7 @@ module.exports.NewsController = {
         img: req.body.img,
         name: req.body.name,
         desciption: req.body.description,
+        category: req.body.category
       });
       res.json(addedNews)
     } catch (err) {
@@ -60,6 +61,7 @@ module.exports.NewsController = {
         img: req.body.img,
         name: req.body.name,
         desciption: req.body.desciption,
+        category: req.body.category
       });
       res.json(updatedNews)
     } catch (err) {
