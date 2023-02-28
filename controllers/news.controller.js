@@ -6,7 +6,7 @@ module.exports.NewsController = {
       const addedNews = await News.create({
         img: req.body.img,
         name: req.body.name,
-        desciption: req.body.description,
+        description: req.body.description,
         category: req.body.category
       });
       res.json(addedNews)
