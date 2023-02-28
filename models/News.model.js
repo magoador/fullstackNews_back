@@ -6,13 +6,13 @@ const NewsSchema = mongoose.Schema({
   description: String,
   category: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'category'
+    ref: 'Category'
   },
   comments: [
     {
       user: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "user",
+        ref: "User",
       },
       text: String,
     },

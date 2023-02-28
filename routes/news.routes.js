@@ -5,6 +5,7 @@ const router = Router();
 
 router.get("/news", NewsController.getAllNews);
 router.get("/news/:id", NewsController.getNewsById);
+router.get("/news/:category", NewsController.getNewsByCategory);
 router.post("/news", NewsController.addNews);
 router.patch("/news/:id/add/comment", NewsController.addComment);
 router.patch('/news/:id/delete/comment', NewsController.deleteCommentById)

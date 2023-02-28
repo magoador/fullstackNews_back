@@ -4,7 +4,7 @@ module.exports.categoryController = {
     addCategory: async (req, res) => {
         try {
             const addedCategory = await Category.create({
-                category: req.body.category
+                name: req.body.name
             })
             res.json(addedCategory)
         } catch(err) {
@@ -30,7 +30,7 @@ module.exports.categoryController = {
     updateCategoryById: async (req, res) => {
         try {
             const updatedCategory = await Category.findByIdAndUpdate(req.params.id, {
-                category: req.body.category
+                name: req.body.name
             })
             res.json(updatedCategory)
         } catch(err) {

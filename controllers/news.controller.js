@@ -41,7 +41,7 @@ module.exports.NewsController = {
   },
   getAllNews: async (req, res) => {
     try {
-      const allNews = await News.find();
+      const allNews = await News.find().populate('category');
       res.json(allNews)
     } catch (err) {
       res.json(err);
@@ -50,6 +50,16 @@ module.exports.NewsController = {
   getNewsById: async (req, res) => {
     try {
       const newsById = await News.findById(req.params.id);
+      res.json(newsById)
+    } catch (err) {
+      res.json(err);
+    }
+  },
+  getNewsByCategory: async (req, res) => {
+    try {
+      const newsCategory = await News.find().populate('category');
+      const currentCategory = newsCategory.filter((category) => category.name === req.params.category)
+      console.log(newsCategory);
       res.json(newsById)
     } catch (err) {
       res.json(err);
