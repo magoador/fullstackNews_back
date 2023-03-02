@@ -4,7 +4,10 @@ module.exports.UserController = {
   addUser: async (req, res) => {
     try {
       const addedUser = await User.create({
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        login: req.body.login,
+        password: req.body.password
       });
       res.json(addedUser)
     } catch (err) {
@@ -30,7 +33,10 @@ module.exports.UserController = {
   updateUserByID: async (req, res) => {
     try {
       const updatedUser = await User.findByIdAndUpdate(req.params.id, {
-        name: req.body.name,
+        firstName: req.body.firstName,
+        lastName: req.body.lastName,
+        login: req.body.login,
+        password: req.body.password
       });
       res.json(updatedUser)
     } catch (err) {
