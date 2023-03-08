@@ -11,7 +11,7 @@ module.exports.NewsController = {
       });
       res.json(addedNews);
     } catch (err) {
-      res.json(err);
+      res.json({err: err.message});
     }
   },
   addComment: async (req, res) => {
@@ -24,7 +24,6 @@ module.exports.NewsController = {
           },
         },
       });
-      console.log(addedComment);
       return res.json(addedComment);
     } catch (err) {
       return res.json(err);
