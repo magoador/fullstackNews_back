@@ -7,42 +7,47 @@ module.exports.NewsController = {
         img: req.body.img,
         name: req.body.name,
         description: req.body.description,
-        category: req.body.category
+        category: req.body.category,
       });
-      res.json(addedNews)
+      res.json(addedNews);
     } catch (err) {
       res.json(err);
     }
   },
   addComment: async (req, res) => {
     try {
-      const addedComment = await News.findByIdAndUpdate(req.params.id, {
-        $push: { comments: {
-          user: req.body.user,
-          text: req.body.text,
-        }}
+      const addedComment = await News.findByIdAndUpdate(req.params.newsId, {
+        $push: {
+          comments: {
+            user: req.body.user,
+            text: req.body.text,
+          },
+        },
       });
-      res.json(addedComment)
+      console.log(addedComment);
+      return res.json(addedComment);
     } catch (err) {
-      res.json(err);
+      return res.json(err);
     }
   },
   deleteCommentById: async (req, res) => {
     try {
       const deleteComment = await News.findByIdAndUpdate(req.params.id, {
-        $pull: { comments: {
-          _id: req.body.commentId
-        } }
-      })
-      res.json(deleteComment)
-    } catch(err) {
-      res.json(err)
+        $pull: {
+          comments: {
+            _id: req.body.commentId,
+          },
+        },
+      });
+      res.json(deleteComment);
+    } catch (err) {
+      res.json(err);
     }
   },
   getAllNews: async (req, res) => {
     try {
-      const allNews = await News.find().populate('category');
-      res.json(allNews)
+      const allNews = await News.find().populate("category");
+      res.json(allNews);
     } catch (err) {
       res.json(err);
     }
@@ -50,16 +55,18 @@ module.exports.NewsController = {
   getNewsById: async (req, res) => {
     try {
       const newsById = await News.findById(req.params.id);
-      res.json(newsById)
+      res.json(newsById);
     } catch (err) {
       res.json(err);
     }
   },
   getNewsByCategory: async (req, res) => {
     try {
-      const newsCategory = await News.find().populate('category').filter((category) => category.name === req.params.category);
+      const newsCategory = await News.find()
+        .populate("category")
+        .filter((category) => category.name === req.params.category);
       // newsCategory.filter((category) => category.name === req.params.category)
-      res.json(newsCategory)
+      res.json(newsCategory);
     } catch (err) {
       res.json(err);
     }
@@ -70,9 +77,9 @@ module.exports.NewsController = {
         img: req.body.img,
         name: req.body.name,
         desciption: req.body.desciption,
-        category: req.body.category
+        category: req.body.category,
       });
-      res.json(updatedNews)
+      res.json(updatedNews);
     } catch (err) {
       res.json(err);
     }
@@ -80,7 +87,7 @@ module.exports.NewsController = {
   deleteNewsById: async (req, res) => {
     try {
       const deletedNews = await News.findByIdAndDelete(req.params.id);
-      res.json(deletedNews)
+      res.json(deletedNews);
     } catch (err) {
       res.json(err);
     }
