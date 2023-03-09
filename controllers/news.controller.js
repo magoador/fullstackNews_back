@@ -72,7 +72,7 @@ module.exports.NewsController = {
   },
   updateNewsById: async (req, res) => {
     try {
-      const updatedNews = await News.findByIdAndUpdate(req.params.id, {
+      const updatedNews = await News.findByIdAndUpdate(req.body.id, {
         img: req.body.img,
         name: req.body.name,
         desciption: req.body.desciption,
