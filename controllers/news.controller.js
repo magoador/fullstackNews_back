@@ -11,19 +11,23 @@ module.exports.NewsController = {
       });
       res.json(addedNews);
     } catch (err) {
-      res.json({err: err.message});
+      res.json({ err: err.message });
     }
   },
   addComment: async (req, res) => {
     try {
-      const addedComment = await News.findByIdAndUpdate(req.params.newsId, {
-        $push: {
-          comments: {
-            user: req.body.user,
-            text: req.body.text,
+      const addedComment = await News.findByIdAndUpdate(
+        req.params.newsId,
+        {
+          $push: {
+            comments: {
+              user: req.body.user,
+              text: req.body.text,
+            },
           },
         },
-      });
+        { new: true }
+      );
       return res.json(addedComment);
     } catch (err) {
       return res.json(err);
