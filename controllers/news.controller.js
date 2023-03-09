@@ -64,7 +64,6 @@ module.exports.NewsController = {
       const newsCategory = await News.find()
         .populate("category")
         .filter((category) => category.name === req.params.category);
-      // newsCategory.filter((category) => category.name === req.params.category)
       res.json(newsCategory);
     } catch (err) {
       res.json(err);
@@ -72,7 +71,7 @@ module.exports.NewsController = {
   },
   updateNewsById: async (req, res) => {
     try {
-      const updatedNews = await News.findByIdAndUpdate(req.body.id, {
+      const updatedNews = await News.findByIdAndUpdate(req.params.id, {
         img: req.body.img,
         name: req.body.name,
         desciption: req.body.desciption,
